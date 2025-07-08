@@ -10,7 +10,6 @@ const categorySchema = new mongoose.Schema({
   },
   slug: {
     type: String,
-    required: true,
     unique: true,
     lowercase: true,
   },
@@ -31,10 +30,11 @@ const categorySchema = new mongoose.Schema({
 });
 
 // Generate slug before saving
-categorySchema.pre('save', function (next) {
-  if (this.isModified('name')) {
+categorySchema.pre('save', function(next) {
+  if (this.name) {
     this.slug = this.name
       .toLowerCase()
+      .trim()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)+/g, '');
   }
@@ -44,6 +44,11 @@ categorySchema.pre('save', function (next) {
 // Add index for better query performance
 categorySchema.index({ isActive: 1 });
 
-const Category = mongoose.models.Category || mongoose.model('Category', categorySchema);
+// Delete the model if it exists to ensure we use the updated schema
+if (mongoose.models.Category) {
+  delete mongoose.models.Category;
+}
+
+const Category = mongoose.model('Category', categorySchema);
 
 export default Category; 

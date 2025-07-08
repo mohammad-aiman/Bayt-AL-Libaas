@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { writeFile, mkdir } from 'fs/promises';
-import path from 'path';
-import { existsSync } from 'fs';
+import cloudinary from '@/lib/cloudinary';
 
 export async function POST(request: NextRequest) {
   try {
@@ -44,31 +42,22 @@ export async function POST(request: NextRequest) {
         );
       }
 
+      // Convert file to base64
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
+      const base64 = buffer.toString('base64');
+      const base64Url = `data:${file.type};base64,${base64}`;
 
-      // Create upload directory if it doesn't exist
-      const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-      if (!existsSync(uploadDir)) {
-        await mkdir(uploadDir, { recursive: true });
-      }
+      // Upload to Cloudinary
+      const result = await cloudinary.uploader.upload(base64Url, {
+        folder: 'bayt-al-libaas',
+        resource_type: 'auto',
+      });
 
-      // Generate unique filename
-      const timestamp = Date.now();
-      const randomString = Math.random().toString(36).substring(2, 15);
-      const extension = path.extname(file.name);
-      const filename = `${timestamp}-${randomString}${extension}`;
-      const filepath = path.join(uploadDir, filename);
-
-      // Write file
-      await writeFile(filepath, buffer);
-
-      // Create public URL
-      const publicUrl = `/uploads/${filename}`;
       uploadedFiles.push({
         originalName: file.name,
-        filename: filename,
-        url: publicUrl,
+        filename: result.public_id,
+        url: result.secure_url,
         size: file.size,
         type: file.type
       });
@@ -87,4 +76,4 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
-} 
+}
