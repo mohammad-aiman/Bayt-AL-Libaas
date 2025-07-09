@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import { Eye, EyeOff, Loader2, ArrowLeft, Mail, Lock, User, AlertCircle, CheckCircle } from 'lucide-react';
+import StyledInput from '@/components/ui/StyledInput';
 
 export default function SignUpPage() {
   const [formData, setFormData] = useState({
@@ -197,7 +198,7 @@ export default function SignUpPage() {
                 <div className="mobile:absolute mobile:inset-y-0 mobile:left-0 mobile:pl-3 mobile:flex mobile:items-center mobile:pointer-events-none sm:absolute sm:inset-y-0 sm:left-0 sm:pl-3 sm:flex sm:items-center sm:pointer-events-none">
                   <User className="mobile:h-5 mobile:w-5 mobile:text-gray-400 sm:h-5 sm:w-5 sm:text-gray-400" />
                 </div>
-                <input
+                <StyledInput
                   id="name"
                   name="name"
                   type="text"
@@ -205,10 +206,11 @@ export default function SignUpPage() {
                   required
                   value={formData.name}
                   onChange={(e) => handleChange('name', e.target.value)}
-                  className={`mobile:block mobile:w-full mobile:pl-10 mobile:pr-3 mobile:py-4 mobile:border mobile:rounded-mobile-lg mobile:focus:ring-2 mobile:focus:ring-accent-purple-500 mobile:focus:border-accent-purple-500 mobile:text-mobile-base mobile:text-gray-900 mobile:placeholder-gray-400 mobile:min-h-touch sm:appearance-none sm:relative sm:block sm:w-full sm:pl-10 sm:pr-3 sm:py-2 sm:border sm:placeholder-gray-500 sm:text-gray-900 sm:rounded-md sm:focus:outline-none sm:focus:ring-accent-purple-500 sm:focus:border-accent-purple-500 sm:text-sm ${
+                  error={!!errors.name}
+                  className={`mobile:block mobile:w-full mobile:pl-10 mobile:pr-3 mobile:py-4 mobile:border mobile:rounded-mobile-lg mobile:focus:ring-2 mobile:focus:ring-accent-purple-500 mobile:focus:border-accent-purple-500 mobile:text-mobile-base mobile:placeholder-gray-400 mobile:min-h-touch sm:appearance-none sm:relative sm:block sm:w-full sm:pl-10 sm:pr-3 sm:py-2 sm:border sm:placeholder-gray-500 sm:rounded-md sm:focus:outline-none sm:focus:ring-accent-purple-500 sm:focus:border-accent-purple-500 sm:text-sm ${
                     errors.name 
-                      ? 'mobile:border-red-300 mobile:bg-red-50 sm:border-red-300' 
-                      : 'mobile:border-gray-300 mobile:bg-white sm:border-gray-300'
+                      ? 'mobile:border-red-300 sm:border-red-300' 
+                      : 'mobile:border-gray-300 sm:border-gray-300'
                   }`}
                   placeholder="Enter your full name"
                 />
@@ -236,7 +238,7 @@ export default function SignUpPage() {
                 <div className="mobile:absolute mobile:inset-y-0 mobile:left-0 mobile:pl-3 mobile:flex mobile:items-center mobile:pointer-events-none sm:absolute sm:inset-y-0 sm:left-0 sm:pl-3 sm:flex sm:items-center sm:pointer-events-none">
                   <Mail className="mobile:h-5 mobile:w-5 mobile:text-gray-400 sm:h-5 sm:w-5 sm:text-gray-400" />
                 </div>
-                <input
+                <StyledInput
                   id="email"
                   name="email"
                   type="email"
@@ -244,10 +246,11 @@ export default function SignUpPage() {
                   required
                   value={formData.email}
                   onChange={(e) => handleChange('email', e.target.value)}
-                  className={`mobile:block mobile:w-full mobile:pl-10 mobile:pr-3 mobile:py-4 mobile:border mobile:rounded-mobile-lg mobile:focus:ring-2 mobile:focus:ring-accent-purple-500 mobile:focus:border-accent-purple-500 mobile:text-mobile-base mobile:text-gray-900 mobile:placeholder-gray-400 mobile:min-h-touch sm:appearance-none sm:relative sm:block sm:w-full sm:pl-10 sm:pr-3 sm:py-2 sm:border sm:placeholder-gray-500 sm:text-gray-900 sm:rounded-md sm:focus:outline-none sm:focus:ring-accent-purple-500 sm:focus:border-accent-purple-500 sm:text-sm ${
+                  error={!!errors.email}
+                  className={`mobile:block mobile:w-full mobile:pl-10 mobile:pr-3 mobile:py-4 mobile:border mobile:rounded-mobile-lg mobile:focus:ring-2 mobile:focus:ring-accent-purple-500 mobile:focus:border-accent-purple-500 mobile:text-mobile-base mobile:placeholder-gray-400 mobile:min-h-touch sm:appearance-none sm:relative sm:block sm:w-full sm:pl-10 sm:pr-3 sm:py-2 sm:border sm:placeholder-gray-500 sm:rounded-md sm:focus:outline-none sm:focus:ring-accent-purple-500 sm:focus:border-accent-purple-500 sm:text-sm ${
                     errors.email 
-                      ? 'mobile:border-red-300 mobile:bg-red-50 sm:border-red-300' 
-                      : 'mobile:border-gray-300 mobile:bg-white sm:border-gray-300'
+                      ? 'mobile:border-red-300 sm:border-red-300' 
+                      : 'mobile:border-gray-300 sm:border-gray-300'
                   }`}
                   placeholder="Enter your email"
                 />
@@ -275,7 +278,7 @@ export default function SignUpPage() {
                 <div className="mobile:absolute mobile:inset-y-0 mobile:left-0 mobile:pl-3 mobile:flex mobile:items-center mobile:pointer-events-none sm:absolute sm:inset-y-0 sm:left-0 sm:pl-3 sm:flex sm:items-center sm:pointer-events-none">
                   <Lock className="mobile:h-5 mobile:w-5 mobile:text-gray-400 sm:h-5 sm:w-5 sm:text-gray-400" />
                 </div>
-                <input
+                <StyledInput
                   id="password"
                   name="password"
                   type={showPassword ? 'text' : 'password'}
@@ -283,10 +286,11 @@ export default function SignUpPage() {
                   required
                   value={formData.password}
                   onChange={(e) => handleChange('password', e.target.value)}
-                  className={`mobile:block mobile:w-full mobile:pl-10 mobile:pr-10 mobile:py-4 mobile:border mobile:rounded-mobile-lg mobile:focus:ring-2 mobile:focus:ring-accent-purple-500 mobile:focus:border-accent-purple-500 mobile:text-mobile-base mobile:text-gray-900 mobile:placeholder-gray-400 mobile:min-h-touch sm:appearance-none sm:block sm:w-full sm:pl-10 sm:pr-10 sm:py-2 sm:border sm:placeholder-gray-500 sm:text-gray-900 sm:rounded-md sm:focus:outline-none sm:focus:ring-accent-purple-500 sm:focus:border-accent-purple-500 sm:text-sm ${
+                  error={!!errors.password}
+                  className={`mobile:block mobile:w-full mobile:pl-10 mobile:pr-10 mobile:py-4 mobile:border mobile:rounded-mobile-lg mobile:focus:ring-2 mobile:focus:ring-accent-purple-500 mobile:focus:border-accent-purple-500 mobile:text-mobile-base mobile:placeholder-gray-400 mobile:min-h-touch sm:appearance-none sm:block sm:w-full sm:pl-10 sm:pr-10 sm:py-2 sm:border sm:placeholder-gray-500 sm:rounded-md sm:focus:outline-none sm:focus:ring-accent-purple-500 sm:focus:border-accent-purple-500 sm:text-sm ${
                     errors.password 
-                      ? 'mobile:border-red-300 mobile:bg-red-50 sm:border-red-300' 
-                      : 'mobile:border-gray-300 mobile:bg-white sm:border-gray-300'
+                      ? 'mobile:border-red-300 sm:border-red-300' 
+                      : 'mobile:border-gray-300 sm:border-gray-300'
                   }`}
                   placeholder="Create a password"
                 />
@@ -322,7 +326,7 @@ export default function SignUpPage() {
                 <div className="mobile:absolute mobile:inset-y-0 mobile:left-0 mobile:pl-3 mobile:flex mobile:items-center mobile:pointer-events-none sm:absolute sm:inset-y-0 sm:left-0 sm:pl-3 sm:flex sm:items-center sm:pointer-events-none">
                   <Lock className="mobile:h-5 mobile:w-5 mobile:text-gray-400 sm:h-5 sm:w-5 sm:text-gray-400" />
                 </div>
-                <input
+                <StyledInput
                   id="confirmPassword"
                   name="confirmPassword"
                   type={showConfirmPassword ? 'text' : 'password'}
@@ -330,10 +334,11 @@ export default function SignUpPage() {
                   required
                   value={formData.confirmPassword}
                   onChange={(e) => handleChange('confirmPassword', e.target.value)}
-                  className={`mobile:block mobile:w-full mobile:pl-10 mobile:pr-10 mobile:py-4 mobile:border mobile:rounded-mobile-lg mobile:focus:ring-2 mobile:focus:ring-accent-purple-500 mobile:focus:border-accent-purple-500 mobile:text-mobile-base mobile:text-gray-900 mobile:placeholder-gray-400 mobile:min-h-touch sm:appearance-none sm:block sm:w-full sm:pl-10 sm:pr-10 sm:py-2 sm:border sm:placeholder-gray-500 sm:text-gray-900 sm:rounded-md sm:focus:outline-none sm:focus:ring-accent-purple-500 sm:focus:border-accent-purple-500 sm:text-sm ${
+                  error={!!errors.confirmPassword}
+                  className={`mobile:block mobile:w-full mobile:pl-10 mobile:pr-10 mobile:py-4 mobile:border mobile:rounded-mobile-lg mobile:focus:ring-2 mobile:focus:ring-accent-purple-500 mobile:focus:border-accent-purple-500 mobile:text-mobile-base mobile:placeholder-gray-400 mobile:min-h-touch sm:appearance-none sm:block sm:w-full sm:pl-10 sm:pr-10 sm:py-2 sm:border sm:placeholder-gray-500 sm:rounded-md sm:focus:outline-none sm:focus:ring-accent-purple-500 sm:focus:border-accent-purple-500 sm:text-sm ${
                     errors.confirmPassword 
-                      ? 'mobile:border-red-300 mobile:bg-red-50 sm:border-red-300' 
-                      : 'mobile:border-gray-300 mobile:bg-white sm:border-gray-300'
+                      ? 'mobile:border-red-300 sm:border-red-300' 
+                      : 'mobile:border-gray-300 sm:border-gray-300'
                   }`}
                   placeholder="Confirm your password"
                 />
