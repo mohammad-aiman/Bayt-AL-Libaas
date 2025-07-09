@@ -45,23 +45,11 @@ const productSchema = new mongoose.Schema({
   },
   sizes: {
     type: [String],
-    required: [true, 'Please provide available sizes'],
-    validate: {
-      validator: function (sizes: string[]) {
-        return sizes.length > 0;
-      },
-      message: 'At least one size is required',
-    },
+    default: [],
   },
   colors: {
     type: [String],
-    required: [true, 'Please provide available colors'],
-    validate: {
-      validator: function (colors: string[]) {
-        return colors.length > 0;
-      },
-      message: 'At least one color is required',
-    },
+    default: [],
   },
   stock: {
     type: Number,

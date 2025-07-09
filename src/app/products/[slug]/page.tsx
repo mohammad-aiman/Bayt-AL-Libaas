@@ -91,8 +91,14 @@ export default function ProductDetailPage() {
   const handleAddToCart = () => {
     if (!product) return;
 
-    if (!selectedSize || !selectedColor) {
-      toast.error('Please select size and color');
+    // Only validate size and color if they exist in the product
+    if (product.sizes.length > 0 && !selectedSize) {
+      toast.error('Please select a size');
+      return;
+    }
+
+    if (product.colors.length > 0 && !selectedColor) {
+      toast.error('Please select a color');
       return;
     }
 
@@ -101,8 +107,8 @@ export default function ProductDetailPage() {
       name: product.name,
       price: product.price,
       image: product.images[0],
-      size: selectedSize,
-      color: selectedColor,
+      size: selectedSize || 'N/A',
+      color: selectedColor || 'N/A',
       quantity,
     });
 
@@ -490,49 +496,53 @@ export default function ProductDetailPage() {
               )}
             </div>
 
-            {/* Size Selection */}
-            <div>
-              <h3 className="mobile:text-mobile-lg mobile:font-semibold mobile:text-gray-900 mobile:mb-3 sm:text-sm sm:font-medium sm:text-gray-900 sm:mb-2">
-                Size
-              </h3>
-              <div className="mobile:grid mobile:grid-cols-4 mobile:gap-3 sm:flex sm:space-x-2">
-                {product.sizes.map((size) => (
-                  <button
-                    key={size}
-                    onClick={() => setSelectedSize(size)}
-                    className={`mobile:py-3 mobile:px-4 mobile:border mobile:rounded-mobile-lg mobile:font-semibold mobile:text-mobile-base mobile:transition-all mobile:min-h-touch sm:px-4 sm:py-2 sm:border sm:rounded-md ${
-                      selectedSize === size
-                        ? 'bg-accent-purple-600 text-white border-accent-purple-600'
-                        : 'bg-white text-gray-900 border-gray-300 hover:bg-gray-50'
-                    }`}
-                  >
-                    {size}
-                  </button>
-                ))}
+            {/* Size Selection - Only show if product has sizes */}
+            {product.sizes.length > 0 && (
+              <div>
+                <h3 className="mobile:text-mobile-lg mobile:font-semibold mobile:text-gray-900 mobile:mb-3 sm:text-sm sm:font-medium sm:text-gray-900 sm:mb-2">
+                  Size
+                </h3>
+                <div className="mobile:grid mobile:grid-cols-4 mobile:gap-3 sm:flex sm:space-x-2">
+                  {product.sizes.map((size) => (
+                    <button
+                      key={size}
+                      onClick={() => setSelectedSize(size)}
+                      className={`mobile:py-3 mobile:px-4 mobile:border mobile:rounded-mobile-lg mobile:font-semibold mobile:text-mobile-base mobile:transition-all mobile:min-h-touch sm:px-4 sm:py-2 sm:border sm:rounded-md ${
+                        selectedSize === size
+                          ? 'bg-accent-purple-600 text-white border-accent-purple-600'
+                          : 'bg-white text-gray-900 border-gray-300 hover:bg-gray-50'
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
-            {/* Color Selection */}
-            <div>
-              <h3 className="mobile:text-mobile-lg mobile:font-semibold mobile:text-gray-900 mobile:mb-3 sm:text-sm sm:font-medium sm:text-gray-900 sm:mb-2">
-                Color
-              </h3>
-              <div className="mobile:grid mobile:grid-cols-3 mobile:gap-3 sm:flex sm:space-x-2">
-                {product.colors.map((color) => (
-                  <button
-                    key={color}
-                    onClick={() => setSelectedColor(color)}
-                    className={`mobile:py-3 mobile:px-4 mobile:border mobile:rounded-mobile-lg mobile:font-semibold mobile:text-mobile-base mobile:transition-all mobile:min-h-touch sm:px-4 sm:py-2 sm:border sm:rounded-md ${
-                      selectedColor === color
-                        ? 'bg-accent-purple-600 text-white border-accent-purple-600'
-                        : 'bg-white text-gray-900 border-gray-300 hover:bg-gray-50'
-                    }`}
-                  >
-                    {color}
-                  </button>
-                ))}
+            {/* Color Selection - Only show if product has colors */}
+            {product.colors.length > 0 && (
+              <div>
+                <h3 className="mobile:text-mobile-lg mobile:font-semibold mobile:text-gray-900 mobile:mb-3 sm:text-sm sm:font-medium sm:text-gray-900 sm:mb-2">
+                  Color
+                </h3>
+                <div className="mobile:grid mobile:grid-cols-4 mobile:gap-3 sm:flex sm:space-x-2">
+                  {product.colors.map((color) => (
+                    <button
+                      key={color}
+                      onClick={() => setSelectedColor(color)}
+                      className={`mobile:py-3 mobile:px-4 mobile:border mobile:rounded-mobile-lg mobile:font-semibold mobile:text-mobile-base mobile:transition-all mobile:min-h-touch sm:px-4 sm:py-2 sm:border sm:rounded-md ${
+                        selectedColor === color
+                          ? 'bg-accent-purple-600 text-white border-accent-purple-600'
+                          : 'bg-white text-gray-900 border-gray-300 hover:bg-gray-50'
+                      }`}
+                    >
+                      {color}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Quantity */}
             <div>

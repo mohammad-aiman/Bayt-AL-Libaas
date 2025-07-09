@@ -32,11 +32,11 @@ const orderSchema = new mongoose.Schema({
     },
     size: {
       type: String,
-      required: [true, 'Order item must have a size'],
+      default: 'N/A',
     },
     color: {
       type: String,
-      required: [true, 'Order item must have a color'],
+      default: 'N/A',
     },
     status: {
       type: String,
