@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react';
 import { Product, Review } from '@/types';
 import { useCartStore } from '@/store/cartStore';
 import { toast } from 'react-hot-toast';
+import ImageModal from '@/components/ui/ImageModal';
 import { 
   Star, 
   ShoppingCart, 
@@ -48,6 +49,8 @@ export default function ProductDetailPage() {
   const [editRating, setEditRating] = useState(0);
   const [editComment, setEditComment] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [selectedImageUrl, setSelectedImageUrl] = useState('');
 
   const addToCart = useCartStore((state) => state.addToCart);
 
@@ -271,6 +274,11 @@ export default function ProductDetailPage() {
     }
   };
 
+  const handleImageClick = (imageUrl: string) => {
+    setSelectedImageUrl(imageUrl);
+    setIsImageModalOpen(true);
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50">
@@ -358,6 +366,7 @@ export default function ProductDetailPage() {
                   className="object-cover"
                   priority
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  onClick={() => handleImageClick(product.images[activeImageIndex])}
                 />
                 
                 {/* Mobile Image Navigation */}
@@ -783,6 +792,14 @@ export default function ProductDetailPage() {
           </div>
         </div>
       </div>
+
+      {/* Image Modal */}
+      <ImageModal
+        isOpen={isImageModalOpen}
+        onClose={() => setIsImageModalOpen(false)}
+        imageUrl={selectedImageUrl}
+        alt={product.name}
+      />
     </div>
   );
 } 
