@@ -205,7 +205,7 @@ export default function SignUpPage() {
                   required
                   value={formData.name}
                   onChange={(e) => handleChange('name', e.target.value)}
-                  className={`mobile:block mobile:w-full mobile:pl-10 mobile:pr-3 mobile:py-4 mobile:border mobile:rounded-mobile-lg mobile:focus:ring-2 mobile:focus:ring-accent-purple-500 mobile:focus:border-accent-purple-500 mobile:text-mobile-base mobile:placeholder-gray-400 mobile:min-h-touch sm:appearance-none sm:relative sm:block sm:w-full sm:pl-10 sm:pr-3 sm:py-2 sm:border sm:placeholder-gray-500 sm:text-gray-900 sm:rounded-md sm:focus:outline-none sm:focus:ring-accent-purple-500 sm:focus:border-accent-purple-500 sm:text-sm ${
+                  className={`mobile:block mobile:w-full mobile:pl-10 mobile:pr-3 mobile:py-4 mobile:border mobile:rounded-mobile-lg mobile:focus:ring-2 mobile:focus:ring-accent-purple-500 mobile:focus:border-accent-purple-500 mobile:text-mobile-base mobile:text-gray-900 mobile:placeholder-gray-400 mobile:min-h-touch sm:appearance-none sm:relative sm:block sm:w-full sm:pl-10 sm:pr-3 sm:py-2 sm:border sm:placeholder-gray-500 sm:text-gray-900 sm:rounded-md sm:focus:outline-none sm:focus:ring-accent-purple-500 sm:focus:border-accent-purple-500 sm:text-sm ${
                     errors.name 
                       ? 'mobile:border-red-300 mobile:bg-red-50 sm:border-red-300' 
                       : 'mobile:border-gray-300 mobile:bg-white sm:border-gray-300'
@@ -244,7 +244,7 @@ export default function SignUpPage() {
                   required
                   value={formData.email}
                   onChange={(e) => handleChange('email', e.target.value)}
-                  className={`mobile:block mobile:w-full mobile:pl-10 mobile:pr-3 mobile:py-4 mobile:border mobile:rounded-mobile-lg mobile:focus:ring-2 mobile:focus:ring-accent-purple-500 mobile:focus:border-accent-purple-500 mobile:text-mobile-base mobile:placeholder-gray-400 mobile:min-h-touch sm:appearance-none sm:relative sm:block sm:w-full sm:pl-10 sm:pr-3 sm:py-2 sm:border sm:placeholder-gray-500 sm:text-gray-900 sm:rounded-md sm:focus:outline-none sm:focus:ring-accent-purple-500 sm:focus:border-accent-purple-500 sm:text-sm ${
+                  className={`mobile:block mobile:w-full mobile:pl-10 mobile:pr-3 mobile:py-4 mobile:border mobile:rounded-mobile-lg mobile:focus:ring-2 mobile:focus:ring-accent-purple-500 mobile:focus:border-accent-purple-500 mobile:text-mobile-base mobile:text-gray-900 mobile:placeholder-gray-400 mobile:min-h-touch sm:appearance-none sm:relative sm:block sm:w-full sm:pl-10 sm:pr-3 sm:py-2 sm:border sm:placeholder-gray-500 sm:text-gray-900 sm:rounded-md sm:focus:outline-none sm:focus:ring-accent-purple-500 sm:focus:border-accent-purple-500 sm:text-sm ${
                     errors.email 
                       ? 'mobile:border-red-300 mobile:bg-red-50 sm:border-red-300' 
                       : 'mobile:border-gray-300 mobile:bg-white sm:border-gray-300'
@@ -283,7 +283,7 @@ export default function SignUpPage() {
                   required
                   value={formData.password}
                   onChange={(e) => handleChange('password', e.target.value)}
-                  className={`mobile:block mobile:w-full mobile:pl-10 mobile:pr-12 mobile:py-4 mobile:border mobile:rounded-mobile-lg mobile:focus:ring-2 mobile:focus:ring-accent-purple-500 mobile:focus:border-accent-purple-500 mobile:text-mobile-base mobile:placeholder-gray-400 mobile:min-h-touch sm:appearance-none sm:relative sm:block sm:w-full sm:pl-10 sm:pr-12 sm:py-2 sm:border sm:placeholder-gray-500 sm:text-gray-900 sm:rounded-md sm:focus:outline-none sm:focus:ring-accent-purple-500 sm:focus:border-accent-purple-500 sm:text-sm ${
+                  className={`mobile:block mobile:w-full mobile:pl-10 mobile:pr-10 mobile:py-4 mobile:border mobile:rounded-mobile-lg mobile:focus:ring-2 mobile:focus:ring-accent-purple-500 mobile:focus:border-accent-purple-500 mobile:text-mobile-base mobile:text-gray-900 mobile:placeholder-gray-400 mobile:min-h-touch sm:appearance-none sm:block sm:w-full sm:pl-10 sm:pr-10 sm:py-2 sm:border sm:placeholder-gray-500 sm:text-gray-900 sm:rounded-md sm:focus:outline-none sm:focus:ring-accent-purple-500 sm:focus:border-accent-purple-500 sm:text-sm ${
                     errors.password 
                       ? 'mobile:border-red-300 mobile:bg-red-50 sm:border-red-300' 
                       : 'mobile:border-gray-300 mobile:bg-white sm:border-gray-300'
@@ -330,7 +330,7 @@ export default function SignUpPage() {
                   required
                   value={formData.confirmPassword}
                   onChange={(e) => handleChange('confirmPassword', e.target.value)}
-                  className={`mobile:block mobile:w-full mobile:pl-10 mobile:pr-12 mobile:py-4 mobile:border mobile:rounded-mobile-lg mobile:focus:ring-2 mobile:focus:ring-accent-purple-500 mobile:focus:border-accent-purple-500 mobile:text-mobile-base mobile:placeholder-gray-400 mobile:min-h-touch sm:appearance-none sm:relative sm:block sm:w-full sm:pl-10 sm:pr-12 sm:py-2 sm:border sm:placeholder-gray-500 sm:text-gray-900 sm:rounded-md sm:focus:outline-none sm:focus:ring-accent-purple-500 sm:focus:border-accent-purple-500 sm:text-sm ${
+                  className={`mobile:block mobile:w-full mobile:pl-10 mobile:pr-10 mobile:py-4 mobile:border mobile:rounded-mobile-lg mobile:focus:ring-2 mobile:focus:ring-accent-purple-500 mobile:focus:border-accent-purple-500 mobile:text-mobile-base mobile:text-gray-900 mobile:placeholder-gray-400 mobile:min-h-touch sm:appearance-none sm:block sm:w-full sm:pl-10 sm:pr-10 sm:py-2 sm:border sm:placeholder-gray-500 sm:text-gray-900 sm:rounded-md sm:focus:outline-none sm:focus:ring-accent-purple-500 sm:focus:border-accent-purple-500 sm:text-sm ${
                     errors.confirmPassword 
                       ? 'mobile:border-red-300 mobile:bg-red-50 sm:border-red-300' 
                       : 'mobile:border-gray-300 mobile:bg-white sm:border-gray-300'
