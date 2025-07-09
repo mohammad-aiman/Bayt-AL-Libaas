@@ -79,6 +79,8 @@ export async function middleware(request: NextRequest) {
   if (pathname.startsWith('/_next/') || 
       pathname.startsWith('/api/auth/') ||
       pathname.startsWith('/auth/') ||
+      pathname === '/api/auth/callback/google' ||
+      pathname === '/api/auth/signin/google' ||
       pathname === '/' ||
       pathname === '/shop' ||
       pathname === '/products' ||
