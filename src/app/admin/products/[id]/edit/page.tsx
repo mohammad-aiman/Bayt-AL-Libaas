@@ -162,14 +162,6 @@ export default function EditProductPage({ params }: EditProductPageProps) {
       toast.error('Stock cannot be negative');
       return;
     }
-    if (formData.sizes.length === 0) {
-      toast.error('Please select at least one size');
-      return;
-    }
-    if (formData.colors.length === 0) {
-      toast.error('Please select at least one color');
-      return;
-    }
     if (formData.images.length === 0) {
       toast.error('Please upload at least one image');
       return;
@@ -351,13 +343,14 @@ export default function EditProductPage({ params }: EditProductPageProps) {
 
               {/* Variants */}
               <div className="bg-white rounded-lg shadow p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Product Variants</h2>
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">Product Variants (Optional)</h2>
+                <p className="text-sm text-gray-600 mb-6">You can skip this section if your product doesn't have size or color variants.</p>
                 
                 <div className="space-y-6">
                   {/* Sizes */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-3">
-                      Available Sizes *
+                      Available Sizes
                     </label>
                     <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
                       {availableSizes.map((size) => (
@@ -378,12 +371,13 @@ export default function EditProductPage({ params }: EditProductPageProps) {
                         </label>
                       ))}
                     </div>
+                    <p className="text-xs text-gray-500 mt-2">Leave unselected if this product doesn't have size variants</p>
                   </div>
 
                   {/* Colors */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-3">
-                      Available Colors *
+                      Available Colors
                     </label>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                       {availableColors.map((color) => (
@@ -404,6 +398,7 @@ export default function EditProductPage({ params }: EditProductPageProps) {
                         </label>
                       ))}
                     </div>
+                    <p className="text-xs text-gray-500 mt-2">Leave unselected if this product doesn't have color variants</p>
                   </div>
                 </div>
               </div>
