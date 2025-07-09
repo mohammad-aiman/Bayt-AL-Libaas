@@ -337,16 +337,6 @@ export default function SignInPage() {
               </Link>
             </p>
           </div>
-
-          {/* Admin Access Info */}
-          <div className="mobile:mt-4 mobile:text-center mobile:p-4 mobile:bg-gray-50 mobile:rounded-mobile-lg mobile:border mobile:border-gray-200 sm:mt-4 sm:text-center">
-            <p className="mobile:text-mobile-xs mobile:text-gray-600 mobile:font-medium sm:text-sm sm:text-gray-600">
-              Admin access?{' '}
-              <span className="mobile:text-accent-purple-600 mobile:font-semibold sm:text-accent-purple-600 sm:font-medium">
-                admin@baytallibaas.com / admin123
-              </span>
-            </p>
-          </div>
         </div>
       </div>
     </div>
