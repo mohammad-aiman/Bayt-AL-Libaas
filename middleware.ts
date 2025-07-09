@@ -50,6 +50,14 @@ export async function middleware(request: NextRequest) {
 
   // Rate limiting for API routes
   if (pathname.startsWith('/api/')) {
+    // Skip rate limiting for Google OAuth endpoints
+    if (pathname === '/api/auth/callback/google' || 
+        pathname === '/api/auth/signin/google' ||
+        pathname.startsWith('/api/auth/callback/google/') ||
+        pathname.startsWith('/api/auth/signin/google/')) {
+      return response;
+    }
+
     let rateLimit = 60; // Default: 60 requests per minute
     let windowMs = 60000; // 1 minute
 
