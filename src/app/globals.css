@@ -10,18 +10,35 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
+/* Remove the dark mode media query as it's causing issues */
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+} */
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+/* Add explicit styles for inputs */
+input, 
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  color: #111827 !important; /* gray-900 */
+  -webkit-text-fill-color: #111827 !important;
+  opacity: 1;
+}
+
+input::placeholder {
+  color: #9CA3AF !important; /* gray-400 */
+  -webkit-text-fill-color: #9CA3AF !important;
+  opacity: 1;
 }
 
 html,
