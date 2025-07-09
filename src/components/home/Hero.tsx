@@ -104,16 +104,16 @@ export default function Hero() {
           <div className="mobile:absolute mobile:bottom-4 mobile:left-4 mobile:right-4 mobile:bg-white/90 mobile:backdrop-blur-sm mobile:rounded-mobile-lg mobile:p-4 mobile:shadow-mobile-lg lg:hidden">
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
-                <div className="text-mobile-lg font-bold text-gray-900">1000+</div>
-                <div className="text-mobile-xs text-gray-600">Happy Customers</div>
+                <div className="text-mobile-lg font-bold text-gray-900">Premium</div>
+                <div className="text-mobile-xs text-gray-600">Quality</div>
               </div>
               <div>
-                <div className="text-mobile-lg font-bold text-gray-900">500+</div>
-                <div className="text-mobile-xs text-gray-600">Products</div>
+                <div className="text-mobile-lg font-bold text-gray-900">Curated</div>
+                <div className="text-mobile-xs text-gray-600">Collections</div>
               </div>
               <div>
-                <div className="text-mobile-lg font-bold text-gray-900">24/7</div>
-                <div className="text-mobile-xs text-gray-600">Support</div>
+                <div className="text-mobile-lg font-bold text-gray-900">Always</div>
+                <div className="text-mobile-xs text-gray-600">Here to Help</div>
               </div>
             </div>
           </div>
