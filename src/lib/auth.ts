@@ -10,6 +10,11 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || '',
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+      authorization: {
+        params: {
+          prompt: "select_account"
+        }
+      }
     }),
     CredentialsProvider({
       name: 'credentials',
@@ -70,18 +75,29 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async jwt({ token, user, account }) {
+      console.log('JWT Callback:', {
+        hasUser: !!user,
+        hasAccount: !!account,
+        provider: account?.provider
+      });
+
       if (user) {
         token.role = user.role;
         token.isActive = user.isActive;
         token.provider = account?.provider;
-        token.userId = user.id; // Store the MongoDB ObjectId
+        token.userId = user.id;
       }
       
-      // Verify user is still active on each token refresh
       if (token.userId && !user) {
         try {
           await connectDB();
           const dbUser = await User.findById(token.userId);
+          console.log('Token Refresh:', {
+            userId: token.userId,
+            userFound: !!dbUser,
+            isActive: dbUser?.isActive
+          });
+          
           if (dbUser) {
             token.isActive = dbUser.isActive;
             token.role = dbUser.role;
@@ -94,21 +110,39 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
     async session({ session, token }) {
+      console.log('Session Callback:', {
+        hasToken: !!token,
+        hasUser: !!session.user,
+        provider: token?.provider
+      });
+
       if (token && session.user) {
-        session.user.id = token.userId as string; // Use MongoDB ObjectId instead of token.sub
+        session.user.id = token.userId as string;
         session.user.role = token.role as string;
         session.user.isActive = token.isActive as boolean;
       }
       return session;
     },
     async signIn({ user, account, profile }) {
+      console.log('SignIn Callback:', {
+        userEmail: user?.email,
+        accountType: account?.type,
+        provider: account?.provider,
+        hasProfile: !!profile
+      });
+
       if (account?.provider === 'google') {
         try {
           await connectDB();
           const existingUser = await User.findOne({ email: user.email });
           
+          console.log('Google SignIn Check:', {
+            email: user.email,
+            userExists: !!existingUser,
+            isActive: existingUser?.isActive
+          });
+          
           if (!existingUser) {
-            // Create new user for Google sign-in
             const newUser = await User.create({
               name: user.name,
               email: user.email,
@@ -118,32 +152,38 @@ export const authOptions: NextAuthOptions = {
               isActive: true,
             });
             
-            // Update the user object with MongoDB ObjectId and role for session
+            console.log('Created new Google user:', {
+              id: newUser._id,
+              email: newUser.email
+            });
+            
             user.id = newUser._id.toString();
             user.role = newUser.role;
             user.isActive = newUser.isActive;
           } else {
-            // Check if existing user is active
             if (!existingUser.isActive) {
               console.log(`Login attempt for deactivated Google user: ${existingUser.email}`);
               return false;
             }
             
-            // Update existing user's image if it's from Google
             if (account.provider === 'google' && user.image && existingUser.image !== user.image) {
               existingUser.image = user.image;
               existingUser.provider = 'google';
               await existingUser.save();
+              console.log('Updated existing user image:', existingUser.email);
             }
             
-            // Set MongoDB ObjectId and role for session
             user.id = existingUser._id.toString();
             user.role = existingUser.role;
             user.isActive = existingUser.isActive;
           }
           return true;
         } catch (error) {
-          console.error('Google sign-in error:', error);
+          console.error('Detailed Google SignIn Error:', {
+            error: error instanceof Error ? error.message : 'Unknown error',
+            stack: error instanceof Error ? error.stack : undefined,
+            email: user?.email
+          });
           return false;
         }
       }
@@ -154,5 +194,5 @@ export const authOptions: NextAuthOptions = {
     signIn: '/auth/signin',
   },
   secret: process.env.NEXTAUTH_SECRET,
-  debug: process.env.NODE_ENV === 'development',
+  debug: true, // Enable debug mode
 }; 

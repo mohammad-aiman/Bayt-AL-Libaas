@@ -124,11 +124,26 @@ export default function SignInPage() {
   };
 
   const handleGoogleSignIn = async () => {
-    setIsLoading(true);
     try {
-      await signIn('google', { callbackUrl: '/' });
+      setIsLoading(true);
+      const result = await signIn('google', {
+        callbackUrl: '/',
+        redirect: false
+      });
+
+      console.log('Google Sign-in Result:', result);
+
+      if (result?.error) {
+        console.error('Google sign-in error:', result.error);
+        toast.error('Failed to sign in with Google. Please try again.');
+      } else if (result?.url) {
+        // Successful sign-in, manually handle redirect
+        router.push(result.url);
+      }
     } catch (error) {
-      toast.error('Google sign in failed');
+      console.error('Google sign-in error:', error);
+      toast.error('Failed to sign in with Google. Please try again.');
+    } finally {
       setIsLoading(false);
     }
   };
