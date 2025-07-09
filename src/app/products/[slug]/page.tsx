@@ -430,10 +430,6 @@ export default function ProductDetailPage() {
                   <span className="mobile:text-mobile-xs mobile:font-medium mobile:text-gray-700">Free Ship</span>
                 </div>
                 <div className="mobile:flex mobile:items-center mobile:space-x-2 mobile:p-3 mobile:bg-white mobile:rounded-mobile-lg mobile:shadow-mobile">
-                  <RotateCcw className="mobile:h-4 mobile:w-4 mobile:text-accent-purple-600 mobile:flex-shrink-0" />
-                  <span className="mobile:text-mobile-xs mobile:font-medium mobile:text-gray-700">Returns</span>
-                </div>
-                <div className="mobile:flex mobile:items-center mobile:space-x-2 mobile:p-3 mobile:bg-white mobile:rounded-mobile-lg mobile:shadow-mobile">
                   <Shield className="mobile:h-4 mobile:w-4 mobile:text-accent-purple-600 mobile:flex-shrink-0" />
                   <span className="mobile:text-mobile-xs mobile:font-medium mobile:text-gray-700">Secure</span>
                 </div>
@@ -615,13 +611,6 @@ export default function ProductDetailPage() {
                 <div>
                   <p className="text-sm font-medium text-gray-900">Free Shipping</p>
                   <p className="text-xs text-gray-600">On orders over ৳2000</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
-                <RotateCcw className="h-6 w-6 text-accent-purple-600" />
-                <div>
-                  <p className="text-sm font-medium text-gray-900">Easy Returns</p>
-                  <p className="text-xs text-gray-600">30-day return policy</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
